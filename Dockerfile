@@ -4,7 +4,7 @@ FROM node:16-alpine as webui
 RUN \
   set -eux && \
   apk add --no-cache git && \
-  git clone --depth 1 https://github.com/ForgQi/biliup.git && \
+  git clone --depth 1 https://github.com/EkkoG/biliup.git && \
   cd biliup && \
   npm install && \
   npm run build
@@ -20,9 +20,9 @@ RUN \
   apk update && \
   apk add --no-cache --virtual .build-deps git curl gcc g++ && \
   apk add --no-cache ffmpeg musl-dev libffi-dev zlib-dev jpeg-dev ca-certificates && \
-  git clone --depth 1 https://github.com/ForgQi/biliup.git && \
+  git clone --depth 1 https://github.com/EkkoG/biliup.git && \
   cd biliup && \
-  pip3 install --no-cache-dir quickjs && \
+  pip3 install --no-cache-dir quickjs==1.18.0 && \
   pip3 install -e . && \
   # Clean up
   apk del --purge .build-deps && \
