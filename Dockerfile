@@ -22,7 +22,7 @@ RUN \
   apk add --no-cache ffmpeg musl-dev libffi-dev zlib-dev jpeg-dev ca-certificates && \
   git clone --depth 1 https://github.com/EkkoG/biliup.git && \
   cd biliup && \
-  pip3 install --no-cache-dir quickjs && \
+  pip3 install --no-cache-dir quickjs=1.18.0 && \
   pip3 install -e . && \
   # Clean up
   apk del --purge .build-deps && \
