@@ -113,7 +113,13 @@ class DownloadBase:
 
     @property
     def file_name(self):
-        return f'/tmp/{self.fname}{time.strftime("%Y-%m-%dT%H_%M_%S", time.localtime())}'
+        write_location = ''
+        if config.get('write_location'):
+            write_location = config.get('write_location') 
+            if not write_location.endswith(os.path.sep):
+                write_location += os.path.sep
+
+        return f'{write_location}{self.fname}{time.strftime("%Y-%m-%dT%H_%M_%S", time.localtime())}'
 
     def close(self):
         pass

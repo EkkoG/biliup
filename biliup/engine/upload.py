@@ -5,6 +5,8 @@ import subprocess
 from functools import reduce
 from pathlib import Path
 
+from biliup.config import config
+
 logger = logging.getLogger('biliup')
 
 
@@ -22,9 +24,15 @@ class UploadBase:
         for file_name in os.listdir('.'):
             if index in file_name and os.path.isfile(file_name):
                 file_list.append(file_name)
-        for file_name in os.listdir('/tmp'):
-            if index in file_name and os.path.isfile(file_name):
-                file_list.append(str(Path(file_name).absolute()))
+        write_location = config.get('write_location')
+        if write_location:
+            if not write_location.endswith(os.path.sep):
+                write_location += os.path.sep
+
+            for file_name in os.listdir(write_location):
+                file_path = write_location + file_name
+                if index in file_name and os.path.isfile(file_path):
+                    file_list.append(str(Path(file_path).absolute()))
         file_list = sorted(file_list)
         return file_list
 
