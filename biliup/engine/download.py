@@ -6,6 +6,7 @@ import time
 from biliup.config import config
 from ..plugins import fake_headers
 from biliup import common
+import shutil
 
 logger = logging.getLogger('biliup')
 
@@ -69,7 +70,9 @@ class DownloadBase:
         file_name = self.file_name
         retval = self.download(file_name)
         logger.info(f'{retval}part: {file_name}.{self.suffix}')
-        self.rename(f'{file_name}.{self.suffix}')
+        file_path = f'{file_name}.{self.suffix}'
+        self.rename(file_path)
+        shutil.move(file_path, file_path.split('/')[-1])
         return retval
 
     def start(self):
@@ -110,7 +113,7 @@ class DownloadBase:
 
     @property
     def file_name(self):
-        return f'{self.fname}{time.strftime("%Y-%m-%dT%H_%M_%S", time.localtime())}'
+        return f'/tmp/{self.fname}{time.strftime("%Y-%m-%dT%H_%M_%S", time.localtime())}'
 
     def close(self):
         pass

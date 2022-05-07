@@ -22,6 +22,9 @@ class UploadBase:
         for file_name in os.listdir('.'):
             if index in file_name and os.path.isfile(file_name):
                 file_list.append(file_name)
+        for file_name in os.listdir('/tmp'):
+            if index in file_name and os.path.isfile(file_name):
+                file_list.append(str(Path(file_name).absolute()))
         file_list = sorted(file_list)
         return file_list
 
