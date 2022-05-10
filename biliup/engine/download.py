@@ -72,7 +72,8 @@ class DownloadBase:
         logger.info(f'{retval}part: {file_name}.{self.suffix}')
         file_path = f'{file_name}.{self.suffix}'
         self.rename(file_path)
-        shutil.move(file_path, file_path.split('/')[-1])
+        shutil.copyfile(file_path, file_path.split('/')[-1])
+        os.remove(file_path)
         return retval
 
     def start(self):
