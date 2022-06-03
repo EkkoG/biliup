@@ -24,7 +24,7 @@
 >登录B站获取cookie和token：[命令行投稿工具](https://github.com/ForgQi/biliup-rs) \
 >B站图形界面：[投稿客户端GUI](https://github.com/ForgQi/Caution)
 ## INSTALLATION
-1. 创建最小配置文件 [**config.yaml**](#最小配置文件示例)，完整内容可参照 [config(demo).yaml](https://github.com/ForgQi/bilibiliupload/blob/74b507f085c4545f5a1b3d1fbdd4c8fdef2be058/config(demo).yaml)
+1. 创建最小配置文件 [**config.yaml**](#最小配置文件示例)，完整内容可参照 [config(demo).yaml](https://github.com/ForgQi/bilibiliupload/blob/master/config(demo).yaml)
 
 2. 安装 __FFmpeg__, __pip__
 3. 安装 __biliup__：
@@ -40,8 +40,8 @@ $ biliup restart
 $ biliup --version
 # 显示帮助以查看更多选项
 $ biliup -h
-# 启动 web api, 默认 localhost:19159 可配置，访问 /url-status 获取录播状态
-$ biliup --http --config ./config.yaml start
+# 启动 web ui, 默认 localhost:19159 可配置
+$ biliup --http start
 # 指定配置文件路径
 $ biliup --config ./config.yaml start
 ```
@@ -95,6 +95,7 @@ streamers:
     xxx直播录像:
         url:
             - https://www.twitch.tv/xxx
+        tags: biliup
 ```
 ## EMBEDDING BILIUP
 如果你不想使用完全自动托管的功能，而仅仅只是想嵌入biliup作为一个库来使用这里有两个例子可以作为参考
