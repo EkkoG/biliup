@@ -60,7 +60,8 @@ class UploadBase:
             if f.endswith('.part'):
                 shutil.move(f, os.path.splitext(f)[0])
                 logger.info('%s存在已更名' % f)
-                shutil.move(os.path.splitext(f)[0], os.path.splitext(f)[0].split('/')[-1])
+                shutil.copyfile(os.path.splitext(f)[0], os.path.splitext(f)[0].split('/')[-1])
+                os.remove(os.path.splitext(f)[0])
         return True
 
     def upload(self, file_list):
